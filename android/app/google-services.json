@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "850670301612",
+    "project_id": "meme-space-e90c1",
+    "storage_bucket": "meme-space-e90c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850670301612:android:b19f6f56e4d01d212f4a09",
+        "android_client_info": {
+          "package_name": "com.example.memespace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850670301612-6fu9j142irfjrtktqlnoqjkcs4qnlpe3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBd5c9TRK8Kxm759QPWTF-CLKyzccYzCoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850670301612-6fu9j142irfjrtktqlnoqjkcs4qnlpe3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
