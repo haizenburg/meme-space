@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:memespace/resources/auth_methods.dart';
+import 'package:memespace/responsive/mobileLayout.dart';
+import 'package:memespace/responsive/responsive_layout_screen.dart';
+import 'package:memespace/responsive/webLayout.dart';
+import 'package:memespace/screens/login_screen.dart';
 import 'package:memespace/utils/colors.dart';
 import 'package:memespace/utils/utils.dart';
 import 'package:memespace/widgets/text_input.dart';
@@ -21,6 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController _bioController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
   Uint8List? _image;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -40,6 +45,9 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void _signUp() async {
+    setState(() {
+      _isLoading = true;
+    });
     String res = await AuthMethods().signUpUser(
         email: _emailController.text,
         username: _usernameController.text,
@@ -47,7 +55,25 @@ class _SignupScreenState extends State<SignupScreen> {
         password: _passwordController.text,
         file: _image!);
 
-    if (res != 'successful') {}
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (res != 'successful') {
+      showSnackBar(res, context);
+    } else {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+        return const ResponsiveLayout(
+          mobileScreenLayout: MobileLayout(),
+          webScreenLayout: WebLayout(),
+        );
+      }));
+    }
+  }
+
+  void navigateToLogin() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override
@@ -147,7 +173,13 @@ class _SignupScreenState extends State<SignupScreen> {
             InkWell(
               onTap: () => _signUp(),
               child: Container(
-                child: const Text('Sign Up'),
+                child: _isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          color: primaryColor,
+                        ),
+                      )
+                    : const Text('Sign Up'),
                 width: double.infinity,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -173,7 +205,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: navigateToLogin,
                   child: Container(
                     child: const Text(
                       "Log in",
