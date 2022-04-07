@@ -7,8 +7,8 @@ Client : Flutter, Provider
 
 Server : Firebase Auth, Firebase Storage, Firebase Firestore
 
-##Features
--Email and password Authentication
+## Features
+- Email and password Authentication
 - state management
 - upload post from gallery
 - share posts with comment
@@ -18,7 +18,7 @@ Server : Firebase Auth, Firebase Storage, Firebase Firestore
 
 
 
-##Feedback
+## Feedback
 tshepangmoima@gmail.com
 
 
